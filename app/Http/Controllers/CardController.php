@@ -8,6 +8,11 @@ use function PHPUnit\Framework\isEmpty;
 
 class CardController extends Controller
 {
+    public function index()
+    {
+        $cards = Card::all();
+        return view('index', compact('cards'));
+    }
     public function submit(Request $request)
     {
         $validated = $request->validate([
@@ -36,5 +41,27 @@ class CardController extends Controller
         Card::create($cardData);
 
         return redirect()->back()->with('success', 'Card created!');
+    }
+    public function edit($id)
+    {
+        $card = Card::findOrFail($id);
+        return view('edit', compact('card'));
+    }
+    public function view($id)
+    {
+        $card = Card::findOrFail($id);
+        return view('view-card', compact('card'));
+    }
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        // $post = Post::findOrFail($id);
+        // $post->update($validated);
+
+        // return redirect()->route('posts.index')->with('success', 'Post updated successfully!');
     }
 }

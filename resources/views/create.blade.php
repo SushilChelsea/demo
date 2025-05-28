@@ -29,7 +29,7 @@
             <div class="form-check mb-3 form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" name="isHighlight" id="checkDefault">
                 <label class="form-check-label" for="checkDefault">
-                    Highlighed
+                    Highlighted
                 </label>
             </div>
 
